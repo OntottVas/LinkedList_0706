@@ -23,6 +23,21 @@ public class Linked {
         }
     }
 
+    public void add(int index, String data) throws IndexOutOfBoundsException {
+        int counter = 0;
+        Node current = head;
+        while (counter != index) {
+            if (current == null) {
+                throw new IndexOutOfBoundsException("Size of list: " + size() +".");
+            }
+            current = current.nextNode;
+            counter++;
+        }
+        Node tmp = current;
+        current = new Node(data);
+        current.nextNode = tmp;
+    }
+
     public int size() {
         int size = 0;
         Node current = head;
@@ -31,6 +46,19 @@ public class Linked {
             current = current.nextNode;
         }
         return size;
+    }
+
+    public String get(int index) {
+        if (index > 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Size of list: " + size() +".");
+        }
+        Node current = head;
+        int counter = 0;
+        while (counter != index) {
+            current = current.nextNode;
+            counter++;
+        }
+        return current.getData();
     }
 
     @Override
@@ -58,6 +86,10 @@ class Node {
 
     public void setNextNode(Node nextNode) {
         this.nextNode = nextNode;
+    }
+
+    public String getData() {
+        return data;
     }
 
     @Override
