@@ -23,6 +23,16 @@ public class Linked {
         }
     }
 
+    public int size() {
+        int size = 0;
+        Node current = head;
+        while (current != null) {
+            size++;
+            current = current.nextNode;
+        }
+        return size;
+    }
+
     @Override
     public String toString() {
         // create empty string
