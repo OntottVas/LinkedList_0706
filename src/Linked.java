@@ -15,7 +15,7 @@ public class Linked {
         } else {
             // if the head is not null then null check for the nextNode Node till I find an empty Node
             Node currentNode = head.nextNode;
-            while(currentNode.nextNode != null) {
+            while (currentNode.nextNode != null) {
                 currentNode = currentNode.nextNode;
             }
             // if nextNode Node is empty I insert the new one into its place
@@ -25,21 +25,19 @@ public class Linked {
 
     @Override
     public String toString() {
-        if (head == null) {
-            return "[]";
-        }
         // create empty string
         String toString = "";
         // iterate over every node and concatenate their data to the created string
-        toString += head.data;
-        Node currentNode = head.nextNode;
-        while (currentNode.nextNode != null) {
-            toString += ", " + currentNode.data;
+        Node current = head;
+        while (current != null) {
+            toString += current.data + ", ";
+            current = current.nextNode;
         }
         // if there is no nextNode Node, then return with the string
-        return toString;
+        return "[" + toString.substring(0, toString.length() - 2) + "]";
     }
 }
+
 class Node {
     String data;
     Node nextNode;
