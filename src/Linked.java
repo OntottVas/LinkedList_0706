@@ -15,11 +15,11 @@ public class Linked {
         } else {
             // if the head is not null then null check for the nextNode Node till I find an empty Node
             Node currentNode = head.nextNode;
-            while (currentNode.nextNode != null) {
+            while (currentNode != null) {
                 currentNode = currentNode.nextNode;
             }
             // if nextNode Node is empty I insert the new one into its place
-            currentNode.setNextNode(newNode);
+            currentNode = newNode;
         }
     }
 
@@ -28,7 +28,8 @@ public class Linked {
         Node current = head;
         while (counter != index) {
             if (current == null) {
-                throw new IndexOutOfBoundsException("Size of list: " + size() +".");
+                throw new IndexOutOfBoundsException("Index: " + index +
+                        " of size of list: " + size() +" is out of bound.");
             }
             current = current.nextNode;
             counter++;
@@ -36,6 +37,23 @@ public class Linked {
         Node tmp = current;
         current = new Node(data);
         current.nextNode = tmp;
+    }
+
+    public void remove(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index: " + index +
+                    " of size of list: " + size() +" is out of bound.");
+        }
+        if (index == 0) {
+            this.head = head.nextNode;
+        } else {
+            int counter = 0;
+            Node current = head;
+            while (counter != index) {
+                current = current.nextNode;
+            }
+            current = current.nextNode;
+        }
     }
 
     public int size() {
@@ -49,8 +67,9 @@ public class Linked {
     }
 
     public String get(int index) {
-        if (index > 0 || index >= size()) {
-            throw new IndexOutOfBoundsException("Size of list: " + size() +".");
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Index: " + index +
+                    " of size of list: " + size() +" is out of bound.");
         }
         Node current = head;
         int counter = 0;
